@@ -1,21 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import Loading from './Loading';
+import * as Location from 'expo-location';
+import { Alert } from 'react-native';
+import axios from 'axios';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const API_KEY = 'c3da3cc3c1a642a9b8c321ff373ca94c';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getWeather = async (latitude, longitude) => {
+    const { data } = await axios.get(
+      `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+    );
+    console.log(data);
+  };
+
+  const getLocation = async () => {
+    try {
+      await Location.requestForegroundPermissionsAsync();
+      const {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync();
+      getWeather(latitude, longitude);
+      console.log(latitude, longitude);
+      setIsLoading(false);
+    } catch (error) {
+      Alert.alert("Can't find you.", 'So sad');
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  return isLoading ? <Loading /> : null;
+};
+
+export default App;
