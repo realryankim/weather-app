@@ -15,3 +15,5 @@
 ### 🛴 Link
 🙏 Expo Required
 [TRY THIS](https://expo.io/@realryankim/projects/weather-app)
+
+![image](https://user-images.githubusercontent.com/27044221/119225743-aaa25b00-bb40-11eb-8577-0ede9d4fc520.png)
