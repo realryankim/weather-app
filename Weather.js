@@ -41,10 +41,10 @@ const weatherOptions = {
     title: 'Clear',
     subTitle: 'Enjoy outside',
   },
-  Cloud: {
+  Clouds: {
     iconName: 'weather-cloudy',
     gradient: ['#D7D2CC', '#304352'],
-    title: 'Cloud',
+    title: 'Clouds',
     subTitle: 'Enjoy outside',
   },
   Mist: {
@@ -103,7 +103,7 @@ Weather.propTypes = {
     'Snow',
     'Atmosphere',
     'Clear',
-    'Cloud',
+    'Clouds',
     'Haze',
     'Mist',
     'Dust',
